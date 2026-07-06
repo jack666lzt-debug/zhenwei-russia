@@ -14,8 +14,8 @@
     <script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0];k.async=1;k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');ym(110411637,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});</script><noscript><div><img src='https://mc.yandex.ru/watch/110411637' style='position:absolute;left:-9999px' alt=''/></div></noscript>
     <style>
         :root {
-            --red: #C41E3A;
-            --red-dark: #9B1630; 
+            --red: #C41E3A
+            --red-dark: #9B1630;
             --gold: #D4A843;
             --bg: #FAFAFA;
             --text: #1a1a1a;
@@ -35,6 +35,9 @@
         nav a { color: var(--text); text-decoration: none; margin-left: 28px; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
         nav a:hover { color: var(--red); }
         .lang-switch { background: var(--red); color: var(--white); border: none; padding: 8px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        .mobile-nav a { display: block; padding: 10px 20px; color: var(--text); text-decoration: none; font-weight: 500; }
+        .mobile-nav.open { display: block !important; }
+        @media (min-width: 769px) { .mobile-nav { display: none !important; } }
 
         /* Hero */
         .hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: var(--white); padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
@@ -120,15 +123,79 @@
         footer { background: #111; color: rgba(255,255,255,0.6); padding: 28px 0; text-align: center; font-size: 0.85rem; }
         footer a { color: var(--gold); text-decoration: none; }
 
+        /* Trust & Certifications */
+        #trust { background: var(--white); }
+        .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+        .trust-item { padding: 24px 16px; }
+        .trust-item .icon { font-size: 2.8rem; margin-bottom: 10px; }
+        .trust-item h4 { font-size: 1rem; margin-bottom: 4px; }
+        .trust-item p { font-size: 0.85rem; color: var(--text-light); }
+
+        /* FAQ */
+        #faq { background: var(--bg); }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--white); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+        .faq-q { padding: 18px 20px; cursor: pointer; font-weight: 600; font-size: 1rem; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+        .faq-q:hover { color: var(--red); }
+        .faq-q .arrow { transition: transform 0.3s; font-size: 0.8rem; }
+        .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; padding: 0 20px; color: var(--text-light); font-size: 0.95rem; line-height: 1.7; }
+        .faq-item.open .faq-a { max-height: 300px; padding: 0 20px 18px; }
+
+        /* WhatsApp Float */
+        .wa-float { position: fixed; bottom: 24px; right: 24px; z-index: 999; width: 58px; height: 58px; border-radius: 50%; background: #25D366; box-shadow: 0 4px 16px rgba(37,211,102,0.4); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s; text-decoration: none; }
+        .wa-float:hover { transform: scale(1.1); }
+        .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+        .wa-float .pulse { position: absolute; width: 58px; height: 58px; border-radius: 50%; background: #25D366; animation: waPulse 2s infinite; z-index: -1; }
+        @keyframes waPulse { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.6); opacity: 0; } }
+
+        /* Back to Top */
+        .btt { position: fixed; bottom: 96px; right: 28px; z-index: 998; width: 42px; height: 42px; border-radius: 50%; background: var(--red); color: #fff; border: none; font-size: 1.2rem; cursor: pointer; opacity: 0; transform: translateY(20px); transition: all 0.3s; pointer-events: none; }
+        .btt.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .btt:hover { background: var(--red-dark); }
+
+        /* Mobile Sticky CTA */
+        .mobile-cta { display: none; }
+        @media (max-width: 768px) {
+            .mobile-cta { display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 998; gap: 8px; padding: 10px 16px; background: rgba(255,255,255,0.95); border-top: 1px solid var(--border); backdrop-filter: blur(10px); }
+            .mobile-cta a { flex: 1; text-align: center; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+            .mobile-cta .btn-wa { background: #25D366; color: #fff; }
+            .mobile-cta .btn-price { background: var(--red); color: #fff; }
+        }
+
+        /* Scroll Reveal */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Hero Stats */
+        .hero-stats { display: flex; justify-content: center; gap: 40px; margin-top: 40px; flex-wrap: wrap; position: relative; }
+        .hero-stat { text-align: center; }
+        .hero-stat .num { font-size: 2.2rem; font-weight: 800; color: var(--gold); }
+        .hero-stat .label { font-size: 0.85rem; opacity: 0.7; margin-top: 4px; }
+
+        /* Cookie Banner */
+        .cookie-banner { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(26,26,46,0.97); color: #fff; z-index: 1000; padding: 16px 24px; display: flex; justify-content: center; align-items: center; gap: 16px; font-size: 0.85rem; flex-wrap: wrap; transform: translateY(100%); transition: transform 0.4s; }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-banner button { background: var(--gold); color: #111; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-weight: 700; font-size: 0.85rem; }
+
         /* Mobile */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 1.8rem; }
-            nav { display: none; }
+            .hero { padding: 60px 0 50px; }
+            .hero h1 { font-size: 1.6rem; }
+            .hero-stats { gap: 20px; }
+            .hero-stat .num { font-size: 1.5rem; }
+            .nav-desktop { display: none; }
+            .hamburger { display: flex !important; }
             .about-grid, .contact-grid { grid-template-columns: 1fr; }
-            .product-categories, .oem-features { grid-template-columns: 1fr; }
+            .product-categories, .oem-features, .trust-grid { grid-template-columns: 1fr; }
             .about-stats { grid-template-columns: 1fr 1fr; }
-            table { font-size: 0.8rem; }
-            th, td { padding: 8px 6px; }
+            table { font-size: 0.78rem; }
+            th, td { padding: 8px 4px; }
+            section { padding: 50px 0; }
+            .btt { bottom: 160px; right: 16px; }
+            .wa-float { bottom: 100px; right: 16px; width: 48px; height: 48px; }
+            .wa-float svg { width: 24px; height: 24px; }
+            .wa-float .pulse { width: 48px; height: 48px; }
         }
     </style>
 </head>
@@ -138,14 +205,26 @@
 <header>
     <div class="container">
         <a href="#" class="logo">SHANDONG ZHENWEI<span>Import & Export Co., Ltd.</span></a>
-        <nav>
+        <nav class="nav-desktop">
             <a href="#about">О компании</a>
             <a href="#products">Продукция</a>
             <a href="#catalog">Каталог</a>
             <a href="#oem">OEM</a>
+            <a href="#faq">FAQ</a>
             <a href="#contact">Контакты</a>
         </nav>
+        <button class="hamburger" onclick="document.getElementById('mobileNav').classList.toggle('open')" aria-label="Меню" style="display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;padding:8px;">
+            ☰
+        </button>
         <button class="lang-switch" onclick="window.location.href='#'">🇷🇺 RU</button>
+    </div>
+    <div id="mobileNav" class="mobile-nav" style="display:none;background:var(--white);border-top:1px solid var(--border);padding:12px 0;">
+        <a href="#about" onclick="document.getElementById('mobileNav').classList.remove('open')">О компании</a>
+        <a href="#products" onclick="document.getElementById('mobileNav').classList.remove('open')">Продукция</a>
+        <a href="#catalog" onclick="document.getElementById('mobileNav').classList.remove('open')">Каталог</a>
+        <a href="#oem" onclick="document.getElementById('mobileNav').classList.remove('open')">OEM</a>
+        <a href="#faq" onclick="document.getElementById('mobileNav').classList.remove('open')">FAQ</a>
+        <a href="#contact" onclick="document.getElementById('mobileNav').classList.remove('open')">Контакты</a>
     </div>
 </header>
 
@@ -158,12 +237,18 @@
             <a href="#contact" class="btn btn-primary">Получить прайс-лист</a>
             <a href="#catalog" class="btn btn-outline">Смотреть каталог</a>
         </div>
+        <div class="hero-stats">
+            <div class="hero-stat"><div class="num">30+</div><div class="label">Продуктов</div></div>
+            <div class="hero-stat"><div class="num">OEM</div><div class="label">Под вашим брендом</div></div>
+            <div class="hero-stat"><div class="num">РФ</div><div class="label">Прямые поставки</div></div>
+            <div class="hero-stat"><div class="num">24/7</div><div class="label">Поддержка</div></div>
+        </div>
     </div>
 </section>
 
 <!-- About -->
 <section id="about">
-    <div class="container">
+    <div class="container reveal">
         <div class="about-grid">
             <div class="about-text">
                 <h3>О компании Shandong Zhenwei</h3>
@@ -177,8 +262,39 @@
                     <div class="stat"><div class="num">Экспорт</div><div class="label">Прямые поставки</div></div>
                 </div>
             </div>
-            <div style="background: #f0f0f0; border-radius: 14px; height: 380px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 0.9rem;">
-                [Фото производства / продукции]
+            <div style="border-radius:14px;overflow:hidden;">
+                <img src="https://sc02.alicdn.com/kf/Ae9c3c5442b594748bf027aa690df5a3de.png" alt="Производство Shandong Zhenwei" style="width:100%;height:380px;object-fit:cover;display:block;" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust & Certifications -->
+<section id="trust">
+    <div class="container reveal">
+        <div class="section-title">
+            <h2>Почему <span class="accent">выбирают нас</span></h2>
+        </div>
+        <div class="trust-grid">
+            <div class="trust-item">
+                <div class="icon">🏭</div>
+                <h4>Собственное производство</h4>
+                <p>Полный цикл — от сырья до упаковки</p>
+            </div>
+            <div class="trust-item">
+                <div class="icon">✅</div>
+                <h4>Международные стандарты</h4>
+                <p>Соответствие требованиям ЕАЭС и РФ</p>
+            </div>
+            <div class="trust-item">
+                <div class="icon">🧊</div>
+                <h4>Холодовая цепь</h4>
+                <p>Соблюдение температурного режима на всех этапах</p>
+            </div>
+            <div class="trust-item">
+                <div class="icon">📋</div>
+                <h4>Сопровождение сделки</h4>
+                <p>От образцов до таможенного оформления</p>
             </div>
         </div>
     </div>
@@ -193,7 +309,7 @@
         </div>
         <div class="product-categories">
             <div class="cat-card">
-                <div class="cat-icon">🍗</div>
+                <img src="https://sc02.alicdn.com/kf/A6f6e9b08484143f8bc670b76171a79b1Q.png" alt="Готовые блюда" style="width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:16px;" loading="lazy">
                 <h3>Готовые блюда</h3>
                 <div class="count">14 SKU</div>
                 <ul>
@@ -202,13 +318,13 @@
                     <li>Курица карри (咖喱鸡)</li>
                     <li>Тушёная свинина (红烧肉)</li>
                     <li>Говядина с помидорами (番茄牛腩)</li>
-                    <li>Тофу по-домашнему (家常豆腐)</li>
+                    <li>То富 по-домашнему (家常豆腐)</li>
                     <li>Мапо тофу (麻婆豆腐)</li>
                     <li>… и ещё 7 блюд</li>
                 </ul>
             </div>
             <div class="cat-card">
-                <div class="cat-icon">🥟</div>
+                <img src="https://sc02.alicdn.com/kf/A7b8f12019d7e474d956a2d7ad936f9b4q.png" alt="Замороженные пельмени" style="width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:16px;" loading="lazy">
                 <h3>Замороженные пельмени</h3>
                 <div class="count">10 SKU</div>
                 <ul>
@@ -222,7 +338,7 @@
                 </ul>
             </div>
             <div class="cat-card">
-                <div class="cat-icon">🍚</div>
+                <img src="https://sc02.alicdn.com/kf/A1d78d509b7c2469ba80fc7def5d58221k.png" alt="Жареный рис" style="width:100%;height:200px;object-fit:cover;border-radius:10px;margin-bottom:16px;" loading="lazy">
                 <h3>Жареный рис</h3>
                 <div class="count">8 SKU</div>
                 <ul>
@@ -254,6 +370,11 @@
 
         <!-- Prepared Dishes -->
         <div class="tab-content active" id="dishes">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;">
+                <img src="https://sc02.alicdn.com/kf/A6f6e9b08484143f8bc670b76171a79b1Q.png" alt="Курица Гунбао" style="width:100%;height:180px;object-fit:cover;border-radius:10px;" loading="lazy">
+                <img src="https://sc02.alicdn.com/kf/A80fc156a2a1b4c24b37058a1ee70302a6.png" alt="红烧肉" style="width:100%;height:180px;object-fit:cover;border-radius:10px;" loading="lazy">
+                <img src="https://sc02.alicdn.com/kf/Afe73f9e243bb4dc4abb5d4ce625c21f7G.png" alt="日式肥牛" style="width:100%;height:180px;object-fit:cover;border-radius:10px;" loading="lazy">
+            </div>
             <table>
                 <thead><tr><th>№</th><th>Блюдо (RU)</th><th>Название (CN)</th><th>Вес</th><th>Мясо %</th><th>Статус</th></tr></thead>
                 <tbody>
@@ -263,12 +384,12 @@
                     <tr><td>4</td><td>Курица карри</td><td>咖喱鸡</td><td>220g</td><td>34.09%</td><td><span class="badge badge-stock">В наличии</span></td></tr>
                     <tr><td>5</td><td>Свинина в кисло-сладком соусе (гулаожоу)</td><td>咕咾肉</td><td>220g</td><td>26%</td><td><span class="badge badge-stock">В наличии</span></td></tr>
                     <tr><td>6</td><td>Утка с соусом сача</td><td>沙茶鸭脯</td><td>220g</td><td>36.36%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
-                    <tr><td>7</td><td>Утиная грудка with пивом and тофу</td><td>啤酒鸭脯炒香干</td><td>230g</td><td>34.78%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>7</td><td>Утиная грудка с пивом и тофу</td><td>啤酒鸭脯炒香干</td><td>230g</td><td>34.78%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
                     <tr><td>8</td><td>Тушёная свинина (хуншаожоу)</td><td>红烧肉</td><td>200g</td><td>30%</td><td><span class="badge badge-stock">В наличии</span></td></tr>
-                    <tr><td>9</td><td>Свинина with грибами</td><td>菌菇肉片</td><td>220g</td><td>36.36%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>9</td><td>Свинина с грибами</td><td>菌菇肉片</td><td>220g</td><td>36.36%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
                     <tr><td>10</td><td>Говядина по-японски</td><td>日式肥牛</td><td>220g</td><td>26%</td><td><span class="badge badge-stock">В наличии</span></td></tr>
-                    <tr><td>11</td><td>Говядина with помидорами</td><td>番茄牛腩</td><td>220g</td><td>27.27%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
-                    <tr><td>12</td><td>Говядина with картофелем</td><td>土豆烧牛肉</td><td>220g</td><td>27.27%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>11</td><td>Говядина с помидорами</td><td>番茄牛腩</td><td>220g</td><td>27.27%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>12</td><td>Говядина с картофелем</td><td>土豆烧牛肉</td><td>220g</td><td>27.27%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
                     <tr><td>13</td><td>Тофу по-домашнему</td><td>家常豆腐</td><td>220g</td><td>0%</td><td><span class="badge badge-stock">В наличии</span></td></tr>
                     <tr><td>14</td><td>Мапо тофу</td><td>麻婆豆腐</td><td>200g</td><td>0%</td><td><span class="badge badge-stock">В наличии</span></td></tr>
                 </tbody>
@@ -280,16 +401,16 @@
             <table>
                 <thead><tr><th>№</th><th>Продукт (RU)</th><th>Название (CN)</th><th>Вес</th><th>Мясо %</th><th>Статус</th></tr></thead>
                 <tbody>
-                    <tr><td>1</td><td>Пельмени with морепродуктами</td><td>海鲜全家福</td><td>800g</td><td>8.34%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
-                    <tr><td>2</td><td>Пельмени with говядиной</td><td>牛肉水饺</td><td>800g</td><td>21.85%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
-                    <tr><td>3</td><td>Пельмени with свининой and кукурузой</td><td>鲜肉玉米水饺</td><td>800g</td><td>21.85%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
-                    <tr><td>4</td><td>Пельмени with свининой and креветкой</td><td>肉虾仁水饺</td><td>800g</td><td>8.34%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>1</td><td>Пельмени с морепродуктами</td><td>海鲜全家福</td><td>800g</td><td>8.34%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>2</td><td>Пельмени с говядиной</td><td>牛肉水饺</td><td>800g</td><td>21.85%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>3</td><td>Пельмени со свининой и кукурузой</td><td>鲜肉玉米水饺</td><td>800g</td><td>21.85%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>4</td><td>Пельмени со свининой и креветкой</td><td>肉虾仁水饺</td><td>800g</td><td>8.34%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
                     <tr><td>5</td><td>Вегетарианские пельмени</td><td>素三鲜水饺</td><td>800g</td><td>0%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
-                    <tr><td>6</td><td>Пельмени with рыбой (помфрет)</td><td>白鲅鱼水饺</td><td>800g</td><td>8.34%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
-                    <tr><td>7</td><td>Пельмени with свининой and капустой</td><td>猪肉白菜水饺</td><td>800g</td><td>21.85%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
-                    <tr><td>8</td><td>Пельмени with зелёным луком and свининой</td><td>大葱肉水饺</td><td>800g</td><td>21.85%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
-                    <tr><td>9</td><td>Пельмени with цукини and яйцом</td><td>茭瓜鸡蛋水饺</td><td>800g</td><td>8.34%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
-                    <tr><td>10</td><td>Пельмени «Три деликатеса» with мясом</td><td>肉三鲜水饺</td><td>800g</td><td>8.34%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>6</td><td>Пельмени с рыбой (помфрет)</td><td>白鲅鱼水饺</td><td>800g</td><td>8.34%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>7</td><td>Пельмени со свининой и капустой</td><td>猪肉白菜水饺</td><td>800g</td><td>21.85%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>8</td><td>Пельмени с зелёным луком и свининой</td><td>大葱肉水饺</td><td>800g</td><td>21.85%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>9</td><td>Пельмени с цукини и яйцом</td><td>茭瓜鸡蛋水饺</td><td>800g</td><td>8.34%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
+                    <tr><td>10</td><td>Пельмени «Три деликатеса» с мясом</td><td>肉三鲜水饺</td><td>800g</td><td>8.34%</td><td><span class="badge badge-custom">Под заказ</span></td></tr>
                 </tbody>
             </table>
         </div>
@@ -299,14 +420,14 @@
             <table>
                 <thead><tr><th>№</th><th>Продукт (RU)</th><th>Название (CN)</th><th>Вес</th><th>Статус</th></tr></thead>
                 <tbody>
-                    <tr><td>1</td><td>Рис with чесноком</td><td>蒜蓉油炒米饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
-                    <tr><td>2</td><td>Рис with чёрным трюфелем and грибами майтаке</td><td>黑松露舞茸蘑菇炒米饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
-                    <tr><td>3</td><td>Рис with морепродуктами</td><td>海鲜炒米饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
-                    <tr><td>4</td><td>Рис with креветками</td><td>虾仁炒米饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
-                    <tr><td>5</td><td>Рис with грибами майтаке</td><td>舞茸菌菇炒米饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
-                    <tr><td>6</td><td>Рис with маринованной капустой</td><td>腌渍包菜炒米饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
+                    <tr><td>1</td><td>Рис с чесноком</td><td>蒜蓉油炒米饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
+                    <tr><td>2</td><td>Рис с чёрным трюфелем и грибами майтаке</td><td>黑松露舞茸蘑菇炒米饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
+                    <tr><td>3</td><td>Рис с морепродуктами</td><td>海鲜炒米饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
+                    <tr><td>4</td><td>Рис с креветками</td><td>虾仁炒米饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
+                    <tr><td>5</td><td>Рис с грибами майтаке</td><td>舞茸菌菇炒米饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
+                    <tr><td>6</td><td>Рис с маринованной капустой</td><td>腌渍包菜炒米饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
                     <tr><td>7</td><td>Янчжоуский жареный рис</td><td>扬州炒饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
-                    <tr><td>8</td><td>Рис with соевым соусом</td><td>酱油炒饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
+                    <tr><td>8</td><td>Рис с соевым соусом</td><td>酱油炒饭</td><td>400g</td><td><span class="badge badge-stock">В наличии</span></td></tr>
                 </tbody>
             </table>
         </div>
@@ -324,7 +445,7 @@
             <div class="oem-feat">
                 <div class="icon">🏷️</div>
                 <h4>Ваш бренд</h4>
-                <p>Разработка упаковки and брендирование под вашу торговую марку. Адаптация под требования рынка РФ and ЕАЭС.</p>
+                <p>Разработка упаковки и брендирование под вашу торговую марку. Адаптация под требования рынка РФ и ЕАЭС.</p>
             </div>
             <div class="oem-feat">
                 <div class="icon">🔬</div>
@@ -334,23 +455,39 @@
             <div class="oem-feat">
                 <div class="icon">📦</div>
                 <h4>Гибкие объёмы</h4>
-                <p>От пробной партии до контейнерных поставок. Адаптация фасовки под розницу and HoReCa.</p>
+                <p>От пробной партии до контейнерных поставок. Адаптация фасовки под розницу и HoReCa.</p>
             </div>
             <div class="oem-feat">
                 <div class="icon">📋</div>
                 <h4>Сертификация</h4>
-                <p>Поддержка в оформлении деклараций соответствия ЕАЭС, СГР and других разрешительных документов.</p>
+                <p>Поддержка в оформлении деклараций соответствия ЕАЭС, СГР и других разрешительных документов.</p>
             </div>
             <div class="oem-feat">
                 <div class="icon">🚢</div>
                 <h4>Логистика</h4>
-                <p>Организация морских and железнодорожных поставок. Опыт работы with портами Владивостока and Санкт-Петербурга.</p>
+                <p>Организация морских и железнодорожных поставок. Опыт работы с портами Владивостока и Санкт-Петербурга.</p>
             </div>
             <div class="oem-feat">
                 <div class="icon">🤝</div>
                 <h4>Долгосрочное партнёрство</h4>
-                <p>Заключение годовых контрактов with фиксированными ценами and графиком поставок.</p>
+                <p>Заключение годовых контрактов с фиксированными ценами и графиком поставок.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+    <div class="container reveal">
+        <div class="section-title">
+            <h2>Часто задаваемые <span class="accent">вопросы</span></h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item"><div class="faq-q">Какой минимальный объём заказа? <span class="arrow">▼</span></div><div class="faq-a"><p>Мы работаем гибко: от пробной партии 1 контейнера до регулярных крупных поставок. Для OEM заказов минимальный объём обсуждается индивидуально.</p></div></div>
+            <div class="faq-item"><div class="faq-q">Как осуществляется доставка в Россию? <span class="arrow">▼</span></div><div class="faq-a"><p>Морским транспортом через порты Владивостока и Санкт-Петербурга, а также железнодорожным транспортом. Срок доставки: 25–40 дней. Продукция перевозится в рефрижераторных контейнерах с соблюдением температурного режима -18°C.</p></div></div>
+            <div class="faq-item"><div class="faq-q">Можно ли заказать продукцию под своим брендом? <span class="arrow">▼</span></div><div class="faq-a"><p>Да, OEM/ODM — наша специализация. Мы разработаем упаковку с вашим логотипом и адаптируем рецептуру под ваши требования. Все этапы — от дизайна до отгрузки — под нашим контролем.</p></div></div>
+            <div class="faq-item"><div class="faq-q">Какие документы вы предоставляете? <span class="arrow">▼</span></div><div class="faq-a"><p>Мы оказываем поддержку в оформлении деклараций соответствия ЕАЭС, свидетельств о государственной регистрации (СГР) и других разрешительных документов, необходимых для ввоза пищевой продукции в РФ.</p></div></div>
+            <div class="faq-item"><div class="faq-q">Срок годности продукции? <span class="arrow">▼</span></div><div class="faq-a"><p>Стандартный срок хранения замороженной продукции — 12 месяцев при температуре -18°C. Точные сроки указываются на упаковке каждой партии.</p></div></div>
         </div>
     </div>
 </section>
@@ -390,11 +527,11 @@
                         <option>Замороженные пельмени</option>
                         <option>Жареный рис</option>
                         <option>OEM / ODM производство</option>
-                        <option>Полный каталог and прайс-лист</option>
+                        <option>Полный каталог и прайс-лист</option>
                     </select>
                     <textarea name="message" rows="4" placeholder="Сообщение"></textarea>
                     <input type="hidden" name="_language" value="ru">
-                    <input type="hidden" name="_subject" value="Новый запрос with сайта zhenwei-food.com">
+                    <input type="hidden" name="_subject" value="Новый запрос с сайта zhenwei-food.com">
                     <div id="formMsg" style="display:none; padding:12px; border-radius:8px; margin-bottom:14px; text-align:center; font-weight:600;"></div>
                     <button type="submit" class="btn btn-primary">Отправить запрос</button>
                 </form>
@@ -407,9 +544,30 @@
 <footer>
     <div class="container">
         <p>&copy; 2024–2026 Shandong Zhenwei Import & Export Co., Ltd. Все права защищены.</p>
-        <p>Сделано in Китае with ❤️ | <a href="#contact">Контакты</a></p>
+        <p>Сделано в Китае с ❤️ | <a href="#contact">Контакты</a></p>
     </div>
 </footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/8619026793777" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <div class="pulse"></div>
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<!-- Back to Top -->
+<button class="btt" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Наверх">↑</button>
+
+<!-- Mobile Sticky CTA -->
+<div class="mobile-cta">
+    <a href="https://wa.me/8619026793777" class="btn-wa" target="_blank">💬 WhatsApp</a>
+    <a href="#contact" class="btn-price">📋 Прайс-лист</a>
+</div>
+
+<!-- Cookie Banner -->
+<div class="cookie-banner" id="cookieBanner">
+    Мы используем файлы cookie для аналитики (Yandex Metrica). Продолжая использовать сайт, вы соглашаетесь.
+    <button onclick="document.getElementById('cookieBanner').classList.remove('show');localStorage.setItem('cookies','1')">OK</button>
+</div>
 
 <script>
 // Tab switching
@@ -444,7 +602,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
             msg.style.display = 'block';
             msg.style.background = '#e8f5e9';
             msg.style.color = '#2e7d32';
-            msg.textContent = 'Спасибо! Ваш запрос отправлен. Мы свяжемся with вами in ближайшее время.';
+            msg.textContent = 'Спасибо! Ваш запрос отправлен. Мы свяжемся с вами в ближайшее время.';
             this.reset();
         } else {
             throw new Error('Form error');
@@ -458,6 +616,32 @@ document.getElementById('contactForm').addEventListener('submit', async function
     btn.disabled = false;
     btn.textContent = 'Отправить запрос';
 });
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+        const item = q.parentElement;
+        document.querySelectorAll('.faq-item').forEach(i => { if (i !== item) i.classList.remove('open'); });
+        item.classList.toggle('open');
+    });
+});
+
+// Back to top visibility
+window.addEventListener('scroll', () => {
+    document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 400);
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+}, { threshold: 0.15 });
+revealEls.forEach(el => revealObs.observe(el));
+
+// Cookie banner
+if (!localStorage.getItem('cookies')) {
+    setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1500);
+}
 </script>
 
 </body>
