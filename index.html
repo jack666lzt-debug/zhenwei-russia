@@ -24,12 +24,9 @@ header .c{display:flex;justify-content:space-between;align-items:center;padding:
 nav a{color:var(--t);text-decoration:none;margin-left:24px;font-weight:500;font-size:.92rem}
 nav a:hover{color:var(--r)}
 
-.hero{position:relative;color:var(--w);padding:90px 0 70px;text-align:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:-1}
-.hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease}
-.hero-bg img.active{opacity:1}
+.hero{position:relative;color:var(--w);padding:90px 0 70px;text-align:center;overflow:hidden;background-size:cover;background-position:center;animation:heroSlide 16s infinite}
+@keyframes heroSlide{0%,20%{background-image:linear-gradient(135deg,rgba(20,20,36,.78),rgba(10,40,80,.82)),url(https://sc02.alicdn.com/kf/A105cca848bc049d8962bbc233fbc434et.png)}25%,45%{background-image:linear-gradient(135deg,rgba(20,20,36,.78),rgba(10,40,80,.82)),url(https://sc02.alicdn.com/kf/A1ddfad5cf6964c2794961ae496e422c1I.png)}50%,70%{background-image:linear-gradient(135deg,rgba(20,20,36,.78),rgba(10,40,80,.82)),url(https://sc02.alicdn.com/kf/A19c2f0ebba654384add6b6afd710606ex.png)}75%,95%{background-image:linear-gradient(135deg,rgba(20,20,36,.78),rgba(10,40,80,.82)),url(https://sc02.alicdn.com/kf/A486b936548304ea298f95ec6e09ff978u.png)}}
 .hero .c{position:relative;z-index:1}
-.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(20,20,36,.78),rgba(10,40,80,.82));z-index:0}
 .hero h1{font-size:2.5rem;font-weight:800;margin-bottom:12px}
 .hero h1 span{color:var(--g)}
 .hero p{font-size:1.05rem;opacity:.85;max-width:600px;margin:0 auto 28px}
@@ -119,12 +116,6 @@ nav{display:none}section{padding:40px 0}
 <header><div class="c"><a href="#" class="logo">SHANDONG ZHENWEI<span>Import & Export Co., Ltd.</span></a><nav><a href="#about">О компании</a><a href="#products">Продукция</a><a href="#oem">OEM</a><a href="#faq">FAQ</a><a href="#contact">Контакты</a></nav></div></header>
 
 <section class="hero">
-<div class="hero-bg">
-<img src="https://sc02.alicdn.com/kf/A105cca848bc049d8962bbc233fbc434et.png" alt="Завод" class="active">
-<img src="https://sc02.alicdn.com/kf/A1ddfad5cf6964c2794961ae496e422c1I.png" alt="Производственная линия">
-<img src="https://sc02.alicdn.com/kf/A19c2f0ebba654384add6b6afd710606ex.png" alt="Цех">
-<img src="https://sc02.alicdn.com/kf/A486b936548304ea298f95ec6e09ff978u.png" alt="Лаборатория">
-</div>
 <div class="c">
 <h1>Замороженные блюда из Китая<br>от <span>Shandong Zhenwei</span></h1>
 <p>Производитель и экспортёр готовых замороженных блюд, пельменей и жареного риса. Прямые поставки в Россию. OEM / ODM под вашим брендом.</p>
@@ -286,8 +277,7 @@ document.querySelectorAll('a[href^="#"]').forEach(l=>{if(l.closest('.tn'))return
 document.getElementById('cf').addEventListener('submit',async function(e){e.preventDefault();let b=this.querySelector('button'),m=document.getElementById('fm');b.disabled=true;b.textContent='Отправка...';try{let r=await fetch(this.action,{method:'POST',body:new FormData(this),headers:{'Accept':'application/json'}});if(r.ok){m.style.display='block';m.style.background='#e8f5e9';m.style.color='#2e7d32';m.textContent='Спасибо! Запрос отправлен.';this.reset()}else throw new Error()}catch(e){m.style.display='block';m.style.background='#ffebee';m.style.color='#c62828';m.textContent='Ошибка. Напишите в WhatsApp'}b.disabled=false;b.textContent='Отправить запрос'});
 document.querySelectorAll('.fqq').forEach(q=>q.addEventListener('click',()=>{let i=q.parentElement;i.classList.toggle('open')}));
 window.addEventListener('scroll',()=>document.querySelector('.btt').classList.toggle('show',window.scrollY>400));
-// Hero carousel
-(function(){let imgs=document.querySelectorAll('.hero-bg img'),i=0;setInterval(()=>{imgs[i].classList.remove('active');i=(i+1)%imgs.length;imgs[i].classList.add('active')},4000)})()
+
 </script>
 </body>
-  </html>
+</html>
