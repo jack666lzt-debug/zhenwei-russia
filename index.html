@@ -25,11 +25,11 @@ nav a{color:var(--t);text-decoration:none;margin-left:24px;font-weight:500;font-
 nav a:hover{color:var(--r)}
 
 .hero{position:relative;color:var(--w);padding:90px 0 70px;text-align:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg{position:absolute;inset:0;z-index:-1}
 .hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease}
 .hero-bg img.active{opacity:1}
 .hero .c{position:relative;z-index:1}
-.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(26,26,46,.82),rgba(15,48,96,.88));z-index:0}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(20,20,36,.78),rgba(10,40,80,.82));z-index:0}
 .hero h1{font-size:2.5rem;font-weight:800;margin-bottom:12px}
 .hero h1 span{color:var(--g)}
 .hero p{font-size:1.05rem;opacity:.85;max-width:600px;margin:0 auto 28px}
@@ -223,7 +223,7 @@ nav{display:none}section{padding:40px 0}
 
 <div class="pc"><div class="iw"><img src="https://sc02.alicdn.com/kf/A6317bf90d396421884d9741e81a321b1k.png" alt="舞茸炒饭" loading="lazy"><span class="bd bs">В наличии</span></div><div class="if"><h4>Рис с грибами майтаке</h4><div class="cn">舞茸菌菇炒米饭</div><div class="meta"><span>400g</span></div><a href="#contact">Запросить</a></div></div>
 
-<div class="pc"><div class="iw"><img src="https://sc02.alicdn.com/kf/A109aee97f6614dbbab3c6a79df7a25cch.png" alt="腌渍包菜炒饭" loading="lazy"><span class="bd bs">В наличии</span></div><div class="if"><h4>Рис с маринованной капустой</h4><div class="cn">腌渍包菜炒米饭</div><div class="meta"><span>400g</span></div><a href="#contact">За放ть</a></div></div>
+<div class="pc"><div class="iw"><img src="https://sc02.alicdn.com/kf/A109aee97f6614dbbab3c6a79df7a25cch.png" alt="腌渍包菜炒饭" loading="lazy"><span class="bd bs">В наличии</span></div><div class="if"><h4>Рис с маринованной капустой</h4><div class="cn">腌渍包菜炒米饭</div><div class="meta"><span>400g</span></div><a href="#contact">Запросить</a></div></div>
 
 <div class="pc"><div class="iw"><img src="https://sc02.alicdn.com/kf/Ad0da413dbf904c51a12d42c5cac6aae6C.png" alt="扬州炒饭" loading="lazy"><span class="bd bs">В наличии</span></div><div class="if"><h4>Янчжоуский жареный рис</h4><div class="cn">扬州炒饭</div><div class="meta"><span>400g</span></div><a href="#contact">Запросить</a></div></div>
 
@@ -290,4 +290,4 @@ window.addEventListener('scroll',()=>document.querySelector('.btt').classList.to
 (function(){let imgs=document.querySelectorAll('.hero-bg img'),i=0;setInterval(()=>{imgs[i].classList.remove('active');i=(i+1)%imgs.length;imgs[i].classList.add('active')},4000)})()
 </script>
 </body>
-</html>
+  </html>
